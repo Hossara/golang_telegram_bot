@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/joho/godotenv"
 	"golang.org/x/net/proxy"
@@ -92,7 +93,7 @@ func main() {
 		log.Printf("New message from user @%s", update.Message.From.UserName)
 
 		// Respond to the user.
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Hello! I am your Telegram bot.")
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, fmt.Sprintf("Message: %s", update.Message.Text))
 
 		if _, err := bot.Send(msg); err != nil {
 			log.Printf("Error sending message: %v", err)
